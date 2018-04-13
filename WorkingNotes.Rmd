@@ -1,0 +1,34 @@
+---
+title: "Wishlist"
+author: "Jill MacKay"
+date: "13 April 2018"
+output: 
+  html_document:
+    keep_md: true
+---
+
+# What Do We Want?
+* Tidy verse exports
+* Scale/rank questions collapsed into data
+* Informative headings (alt question text)
+* Data to be of the right class!
+
+
+# Test Data
+Created a survey which has all question types (as of 13/04/18), routing, alt question text, and at least one section heading. This should cover all forms of bos export.
+
+Survey: [https://edinburgh.onlinesurveys.ac.uk/bossier](https://edinburgh.onlinesurveys.ac.uk/bossier)
+
+Export names always take the form of results-for-[survey title]-[year]-[month]-[day]-[time].[extension]
+
+## Play data
+```{r}
+# bd is basic export with no customised options
+bd <- haven::read_sav("TestData/results-for-bossier-2018-04-13-1152.sav") 
+
+# cd is customised data - unique response numbers, alt question text, scale/rank data combined
+cd <- haven::read_sav("TestData/results-for-bossier-2018-04-13-1259.sav")
+
+lapply(bd,class)
+lapply(cd,class)
+```

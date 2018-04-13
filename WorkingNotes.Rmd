@@ -8,8 +8,8 @@ output:
 ---
 
 # What Do We Want?
-* Tidy verse exports
-* Scale/rank questions collapsed into data
+* Data exported in tidy principles
+* Scale/rank questions collapsed into tidy-principled data
 * Informative headings (alt question text)
 * Data to be of the right class!
 
@@ -21,14 +21,72 @@ Survey: [https://edinburgh.onlinesurveys.ac.uk/bossier](https://edinburgh.online
 
 Export names always take the form of results-for-[survey title]-[year]-[month]-[day]-[time].[extension]
 
+## BoS Export Options
+There are a range of export options for BoS which can be confusing. If you're using Minitab you will *have* to combine two or more exports because Minitab does not understand ordinal data very well, and most surveys have ordinal data in my opinion. 
+
+The options I have **bolded** are the options I would select if I was exporting data personally. This is what we want our package to do.
+
+> ### Customise Your Report
+> * **Include unique response number for each respondent**
+> * Include date of response submission
+> * Include date and time of response submission
+> * Include section headings
+> * Exclude free text responses
+> * **Use alternative question text (if provided)**
+
+
+> ### Options for coded exports
+> * code responses (for import into statistical software) *Note that all SPSS files are coded automatically*
+>   + Zero index all multiple choice, multiple answer, selection list and scale questions
+>   + Reverse index values for all multiple choice, multiple answer, selection list and scale questions
+>   + **Combine scale/rank values into a single column where possible**
+
+# Sample data
+## Basic data, no custom import
+* Tab Separated Values File - results-for-bossier-2018-04-13-1527.tsv
+* SPSS File - results-for-bossier-2018-04-13-1527.sav
+* Excel (2003 and older) file - results-for-bossier-2018-04-13-1527.xls
+* Excel (2007 and later) file - results-for-bossier-2018-04-13-1526.xlsx
+* Comma Separated Values File - results-for-bossier-2018-04-13-1527.csv
+
+## Customised Export Data
+* Options selected:
+  + Include unique response number for each respondent
+  + Use alternative question text if provided
+  + Code responses for import into statistical software
+  + Combine scale/rank values into a single column where possible
+
+The files:
+
+* Tab Separated Values File - results-for-bossier-2018-04-13-1540.tsv
+  + Plus key file (separate export) - results-for-bossier-2018-04-13-1541-key.tsv
+* SPSS File - results-for-bossier-2018-04-13-1539.sav
+* Excel (2003 and older) file - results-for-bossier-2018-04-13-1539.xls
+  + Plus key file (separate export) - results-for-bossier-2018-04-13-1542-key.xls
+* Excel (2007 and later) file - results-for-bossier-2018-04-13-1539.xlsx
+  + Plus key file (separate export) - results-for-bossier-2018-04-13-1542-key.xlsx
+* Comma Separated Values File - results-for-bossier-2018-04-13-1539.csv
+  + Plus key file (separate export) - results-for-bossier-2018-04-13-1541-key.csv
+
+**Note that SAV files don't have correpsonding key files (I guess it's the meta data)**
+
+
+
+
+
+
 ## Play data
 ```{r}
-# bd is basic export with no customised options
-bd <- haven::read_sav("TestData/results-for-bossier-2018-04-13-1152.sav") 
+# Basic imports
+bd.excel <- readxl::read_excel("TestData/results-for-bossier-2018-04-13-1526.xlsx")
+bd.csv <- read.csv("TestData/results-for-bossier-2018-04-13-1527.csv")
+bd.spss <- haven::read_sav("TestData/results-for-bossier-2018-04-13-1527.sav")
 
-# cd is customised data - unique response numbers, alt question text, scale/rank data combined
-cd <- haven::read_sav("TestData/results-for-bossier-2018-04-13-1259.sav")
+#Custom Data
+cd.excel <- readxl::read_excel("TestData/results-for-bossier-2018-04-13-1539.xlsx")
+cd.csv <- read.csv("TestData/results-for-bossier-2018-04-13-1539.csv")
+cd.spss <- haven::read_sav("TestData/results-for-bossier-2018-04-13-1539.sav")
 
-lapply(bd,class)
-lapply(cd,class)
+# One of my irritations. You need to convert everything away from character class
+lapply(bd.excel, class)
 ```

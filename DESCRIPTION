@@ -14,5 +14,11 @@ RoxygenNote: 6.1.0
 Suggests:
     spelling
 Language: en-US
-Imports: tidymetadata,
-    haven
+Imports:
+    tidymetadata,
+    haven,
+    magrittr,
+    dplyr,
+    tidyr,
+    stringr,
+    assertthat

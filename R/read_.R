@@ -25,24 +25,14 @@ read_bos <- function(filename,
 
   surv_data <- haven::read_sav(filename)
 
-  surv_question_levels <- names(surv_data %>% dplyr::select(-URN))
-
-  surv_meta <- tidymetadata::create_metadata(surv_data) %>%
-    dplyr::filter(code != "URN") %>%
-    dplyr::mutate(value = as.character(value)) %>%
-    dplyr::select(-class)
+  surv_meta <- tidymetadata::create_metadata(surv_data)
 
   surv_data <- surv_data %>%
-    tidyr::gather("code", "value", -URN)
+    map(as.character) %>%
+    as_tibble()
 
-  surv <- surv_data %>%
-    dplyr::inner_join(surv_meta, by = c("code", "value")) %>%
-    tidyr::unite(question, code, name, sep = sep) %>%
-    dplyr::select(-value) %>%
-    dplyr::rename(response = label) %>%
-    dplyr::mutate(question = pad_q_num(question, pad)) %>%
-    dplyr::distinct() %>%
-    tidyr::spread(question, response)
+  browser()
+
   surv
 }
 

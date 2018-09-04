@@ -24,7 +24,7 @@ read_bos <- function(filename,
 
   surv_data <- haven::read_sav(filename)
 
-  surv_question_levels <- names(surv_data)[-1]
+  surv_question_levels <- names(surv_data %>% dplyr::select(-URN))
 
   surv_meta <- tidymetadata::create_metadata(surv_data) %>%
     dplyr::filter(code != "URN") %>%

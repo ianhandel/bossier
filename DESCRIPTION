@@ -1,7 +1,7 @@
 Package: bossier
 Type: Package
 Title: Import and code data from Online Surveys (BOS)
-Version: 0.1.0
+Version: 0.1.0.9000
 Author: c(person(given = "Ian",
              family = "Handel",
              role = "aut",

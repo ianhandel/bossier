@@ -4,16 +4,23 @@
 \alias{read_bos}
 \title{Import spss .sav data from Online Surveys (BOS)}
 \usage{
-read_bos(filename, sep = "---")
+read_bos(filename, sep = "---", pad = 3)
 }
 \arguments{
 \item{filename}{path to SPSS .sav file from BOS}
 
 \item{sep}{separator for question code and question text}
+
+\item{pad}{number of digits to pad question codes with}
 }
 \value{
-Returns a tibble.
+Returns a tibble with URN and column per question
 }
 \description{
 Import spss .sav data from Online Surveys (BOS)
+}
+\details{
+Imports an SPSS .sav file saved from Online Surveys (BOS) then
+extracts meta data and joins it to create tibble with long form question
+names as headers and explicit data in cells.
 }

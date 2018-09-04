@@ -18,9 +18,10 @@
 
 read_bos <- function(filename,
                      sep = "---",
-                     pad = 3){
+                     pad = 3) {
   assertthat::assert_that(assertthat::is.string(filename),
-                          msg = "filename must be a single character string")
+    msg = "filename must be a single character string"
+  )
 
   surv_data <- haven::read_sav(filename)
 
@@ -29,7 +30,7 @@ read_bos <- function(filename,
   surv_meta <- tidymetadata::create_metadata(surv_data) %>%
     dplyr::filter(code != "URN") %>%
     dplyr::mutate(value = as.character(value)) %>%
-    dplyr::select(- class)
+    dplyr::select(-class)
 
   surv_data <- surv_data %>%
     tidyr::gather("code", "value", -URN)
@@ -41,7 +42,7 @@ read_bos <- function(filename,
     dplyr::rename(response = label) %>%
     dplyr::mutate(question = pad_q_num(question, pad)) %>%
     dplyr::distinct() %>%
-    tidyr::spread(question , response)
+    tidyr::spread(question, response)
   surv
 }
 
@@ -52,10 +53,12 @@ read_bos <- function(filename,
 #' @param pad number of zeros to pad at start of question number
 #' @return Returns a zero padded question id
 
-pad_q_num <- function(text, pad){
+pad_q_num <- function(text, pad) {
   quest <- stringr::str_extract(text, "(?<=^Q)\\d+")
-  text <- stringr::str_replace(text, "(?<=^Q)\\d+",
-                               stringr::str_pad(quest, pad, "left", 0))
+  text <- stringr::str_replace(
+    text, "(?<=^Q)\\d+",
+    stringr::str_pad(quest, pad, "left", 0)
+  )
   text
 }
 

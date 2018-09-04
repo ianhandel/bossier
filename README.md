@@ -1,5 +1,9 @@
 # bossier
 
+[![Travis build status](https://travis-ci.org/ianhandel/bossier.svg?branch=master)](https://travis-ci.org/ianhandel/bossier)
+
+
+
 A package in development to import data from [Bristol] Online Surveys
 
 A pretty thin wrapper round the tidymetadata package

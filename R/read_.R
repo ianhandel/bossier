@@ -27,13 +27,10 @@ read_bos <- function(filename,
 
   surv_meta <- tidymetadata::create_metadata(surv_data)
 
-  surv_data <- surv_data %>%
-    map(as.character) %>%
-    as_tibble()
+  surv_data <- map(names(surv_data),
+                   ~label_if_labelled(surv_data, .x, surv_meta))
 
-  browser()
-
-  surv
+  surv_data
 }
 
 #' Pad SPSS .sav question codes
@@ -68,5 +65,21 @@ bossier_example <- function(path = NULL) {
     dir(system.file("extdata", package = "bossier"))
   } else {
     system.file("extdata", path, package = "bossier", mustWork = TRUE)
+  }
+}
+
+#' Label column if labelled!
+#'
+#'
+#' @param data The dataset
+#' @param variable The variable to consider
+#' @param meta The metadata to use if needed
+#' @export
+
+label_if_labelled <- function(data, variable, meta){
+  if(labelled::is.labelled(data[[variable]])){
+    tidymetadata::label_data(data, variable, variable, meta)
+  }else{
+    data[[variable]]
   }
 }

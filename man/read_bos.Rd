@@ -24,3 +24,8 @@ Imports an SPSS .sav file saved from Online Surveys (BOS) then
 extracts meta data and joins it to create tibble with long form question
 names as headers and explicit data in cells.
 }
+\examples{
+\donttest{test_sav <- bossier_example("bossier_example.sav")}
+\donttest{dat <- read_bos(file, sep = "---", pad = 3)}
+\donttest{head(dat)}
+}

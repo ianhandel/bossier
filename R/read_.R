@@ -11,6 +11,10 @@
 #' names as headers and explicit data in cells.
 #' @export
 #' @examples
+#' \donttest{test_sav <- bossier_example("bossier_example.sav")}
+#' \donttest{dat <- read_bos(file, sep = "---", pad = 3)}
+#' \donttest{head(dat)}
+
 
 read_bos <- function(filename,
                      sep = "---",

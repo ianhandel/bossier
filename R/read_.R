@@ -28,6 +28,9 @@ read_bos <- function(filename,
     msg = "filename must be a single character string"
   )
 
+  # fix for CRAN check
+  URN <- code <- value <- question <- name <- label <- response <- NULL
+
   surv_data <- haven::read_sav(filename)
 
   labels <- sjlabelled::get_label(surv_data)

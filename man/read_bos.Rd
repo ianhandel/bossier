@@ -30,7 +30,7 @@ text label ('label') or both ('both')
 separated by separator text ('sep')
 }
 \examples{
-\donttest{test_sav <- bossier_example("bossier_example.sav")}
+\donttest{file <- bossier_example("bossier_example.sav")}
 
 \donttest{dat <- read_bos(file, sep = "---", pad = 3)}
 \donttest{head(dat)}

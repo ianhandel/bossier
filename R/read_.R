@@ -12,7 +12,7 @@
 #' names as headers and explicit data in cells. headers argument allows choice
 #' original column codes ('code') padded with leading zeros,
 #' text label ('label') or both ('both')
-#' separated by separator text ('sep')
+#' separated by separator text ('sep').
 #' @export
 #' @examples
 #' \donttest{file <- bossier_example("bossier_example.sav")}
@@ -44,6 +44,9 @@ read_bos <- function(filename,
   codes <- pad_q_num(names(surv_data), pad)
   both <- paste0(codes, sep, labels)
 
+  assertthat::assert_that(all(table(labels) == 1 | headers != "label"),
+                          msg = "All labels must be unique to use headers = 'labels',
+                          try heades = 'both' or headers = 'code'")
 
   headers <- switch(headers,
                     label = labels,

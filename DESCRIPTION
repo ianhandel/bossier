@@ -11,7 +11,7 @@ Author: c(person(given = "Ian",
              role = "aut",
              email = "ian.handel@ed.ac.uk"))
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: Eases the import of (Bristol) Online Survey data into R
+Description: Eases the import of (Bristol) Online Survey data into R.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

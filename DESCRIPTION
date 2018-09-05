@@ -4,11 +4,14 @@ Title: Import and code data from Online Surveys (BOS)
 Version: 0.2.2
 Author: c(person(given = "Ian",
              family = "Handel",
+             role = "cre",
+             email = "ian.handel@ed.ac.uk"),
+             person(given = "Ian",
+             family = "Handel",
              role = "aut",
              email = "ian.handel@ed.ac.uk"))
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Eases the import of (Bristol) Online Survey data into R
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

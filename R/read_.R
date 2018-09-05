@@ -15,12 +15,15 @@
 #' separated by separator text ('sep')
 #' @export
 #' @examples
-#' \donttest{test_sav <- bossier_example("bossier_example.sav")}
+#' \donttest{file <- bossier_example("bossier_example.sav")}
+#'
 #' \donttest{dat <- read_bos(file, sep = "---", pad = 3)}
 #' \donttest{head(dat)}
-#' #' \donttest{dat <- read_bos(file, headers = "code", pad = 3)}
+#'
+#' \donttest{dat <- read_bos(file, headers = "code", pad = 3)}
 #' \donttest{head(dat)}
-#' #' \donttest{dat <- read_bos(file, headers = "label")}
+#'
+#' \donttest{dat <- read_bos(file, headers = "label")}
 #' \donttest{head(dat)}
 
 

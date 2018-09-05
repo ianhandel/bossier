@@ -46,7 +46,8 @@ read_bos <- function(filename,
   surv_data <- surv_data %>%
     purrr::map(sjlabelled::as_label) %>%
     tibble::as_tibble() %>%
-    purrr::set_names(headers)
+    purrr::set_names(headers) %>%
+    sjlabelled::remove_all_labels()
 
 
   surv_data

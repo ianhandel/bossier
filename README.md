@@ -10,4 +10,8 @@ A pretty thin wrapper round the sjlabelled package
 
 Do not use this package yet!
 
+To test install with...
+
+devtools::install_github("ianhandel/bossier")
+
 Have a look at help on read_bos() with runnable example using built in .sav data

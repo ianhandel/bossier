@@ -6,7 +6,7 @@
 
 A package in development to import data from [Bristol] Online Surveys
 
-A pretty thin wrapper round the tidymetadata package
+A pretty thin wrapper round the sjlabelled package
 
 Do not use this package yet!
 

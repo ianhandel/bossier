@@ -4,10 +4,12 @@
 \alias{read_bos}
 \title{Import spss .sav data from Online Surveys (BOS)}
 \usage{
-read_bos(filename, sep = "---", pad = 3)
+read_bos(filename, headers = "label", sep = "---", pad = 3)
 }
 \arguments{
 \item{filename}{path to SPSS .sav file from BOS}
+
+\item{headers}{Choice of "label", "code" or "both"}
 
 \item{sep}{separator for question code and question text}
 
@@ -22,7 +24,10 @@ Import spss .sav data from Online Surveys (BOS)
 \details{
 Imports an SPSS .sav file saved from Online Surveys (BOS) then
 extracts meta data and joins it to create tibble with long form question
-names as headers and explicit data in cells.
+names as headers and explicit data in cells. headers argument allows choice
+original column codes ('code') padded with leading zeros,
+text label ('label') or both ('both')
+separated by separator text ('sep')
 }
 \examples{
 \donttest{test_sav <- bossier_example("bossier_example.sav")}

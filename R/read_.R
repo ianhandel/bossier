@@ -3,12 +3,16 @@
 #'
 #'
 #' @param filename path to SPSS .sav file from BOS
+#' @param headers Choice of "label", "code" or "both"
 #' @param sep separator for question code and question text
 #' @param pad number of digits to pad question codes with
 #' @return Returns a tibble with URN and column per question
 #' @details Imports an SPSS .sav file saved from Online Surveys (BOS) then
 #' extracts meta data and joins it to create tibble with long form question
-#' names as headers and explicit data in cells.
+#' names as headers and explicit data in cells. headers argument allows choice
+#' original column codes ('code') padded with leading zeros,
+#' text label ('label') or both ('both')
+#' separated by separator text ('sep')
 #' @export
 #' @examples
 #' \donttest{test_sav <- bossier_example("bossier_example.sav")}
@@ -17,6 +21,7 @@
 
 
 read_bos <- function(filename,
+                     headers = 'label',
                      sep = "---",
                      pad = 3) {
   assertthat::assert_that(assertthat::is.string(filename),
@@ -25,10 +30,21 @@ read_bos <- function(filename,
 
   surv_data <- haven::read_sav(filename)
 
-  surv_meta <- tidymetadata::create_metadata(surv_data)
+  labels <- sjlabelled::get_label(surv_data)
+  codes <- pad_q_num(names(surv_data), pad)
+  both <- paste0(codes, sep, labels)
 
-  surv_data <- map(names(surv_data),
-                   ~label_if_labelled(surv_data, .x, surv_meta))
+
+  headers <- switch(headers,
+                    label = labels,
+                    code = codes,
+                    both = both)
+
+  surv_data <- surv_data %>%
+    purrr::map(sjlabelled::as_label) %>%
+    tibble::as_tibble() %>%
+    purrr::set_names(headers)
+
 
   surv_data
 }
@@ -65,21 +81,5 @@ bossier_example <- function(path = NULL) {
     dir(system.file("extdata", package = "bossier"))
   } else {
     system.file("extdata", path, package = "bossier", mustWork = TRUE)
-  }
-}
-
-#' Label column if labelled!
-#'
-#'
-#' @param data The dataset
-#' @param variable The variable to consider
-#' @param meta The metadata to use if needed
-#' @export
-
-label_if_labelled <- function(data, variable, meta){
-  if(labelled::is.labelled(data[[variable]])){
-    tidymetadata::label_data(data, variable, variable, meta)
-  }else{
-    data[[variable]]
   }
 }

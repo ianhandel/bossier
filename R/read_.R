@@ -31,12 +31,13 @@ read_bos <- function(filename,
                      headers = 'both',
                      sep = "---",
                      pad = 3) {
-  assertthat::assert_that(assertthat::is.string(filename),
+
+  # to survive CRAN global var checks
+  `URN---Unique Response Number` <- NULL
+
+    assertthat::assert_that(assertthat::is.string(filename),
     msg = "filename must be a single character string"
   )
-
-  # fix for CRAN check
-  URN <- code <- value <- question <- name <- label <- response <- NULL
 
   surv_data <- haven::read_sav(filename)
 
@@ -57,7 +58,8 @@ read_bos <- function(filename,
     purrr::map(sjlabelled::as_label) %>%
     tibble::as_tibble() %>%
     purrr::set_names(headers) %>%
-    sjlabelled::remove_all_labels()
+    sjlabelled::remove_all_labels() %>%
+    dplyr::rename(URN = `URN---Unique Response Number`)
 
 
   surv_data

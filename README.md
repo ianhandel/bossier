@@ -8,8 +8,6 @@ A package in development to import data from [Bristol] Online Surveys
 
 Relies heavily on the sjlabelled package
 
-Do not use this package yet!
-
 To test install with...
 
 devtools::install_github("ianhandel/bossier")

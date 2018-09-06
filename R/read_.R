@@ -28,7 +28,7 @@
 
 
 read_bos <- function(filename,
-                     headers = 'label',
+                     headers = 'both',
                      sep = "---",
                      pad = 3) {
   assertthat::assert_that(assertthat::is.string(filename),

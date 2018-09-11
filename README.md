@@ -14,4 +14,4 @@ To test install with...
 
 devtools::install_github("ianhandel/bossier")
 
-Then look at help on read_bos() with runnable example using built in .sav data
+Then look at help on read_bos() with runnable example using built in example .sav data

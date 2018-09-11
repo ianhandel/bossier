@@ -6,12 +6,10 @@
 
 A package in development to import data from [Bristol] Online Surveys
 
-A pretty thin wrapper round the sjlabelled package
-
-Do not use this package yet!
+Relies heavily on the sjlabelled package
 
 To test install with...
 
 devtools::install_github("ianhandel/bossier")
 
-Have a look at help on read_bos() with runnable example using built in .sav data
+Then ha look at help on read_bos() with runnable example using built in .sav data

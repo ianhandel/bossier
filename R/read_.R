@@ -54,15 +54,11 @@ read_bos <- function(filename,
                     code = codes,
                     both = both)
 
-  surv_data <- surv_data %>%
-    purrr::map(sjlabelled::as_label) %>%
-    tibble::as_tibble() %>%
-    purrr::set_names(headers) %>%
-    sjlabelled::remove_all_labels() %>%
-    dplyr::rename(URN = `URN---Unique Response Number`)
-
-
-  surv_data
+  surv_data <- purrr::map(surv_data, sjlabelled::as_label)
+  surv_data <- tibble::as_tibble(surv_data)
+  surv_data <- purrr::set_names(surv_data, headers)
+  surv_data <- sjlabelled::remove_all_labels(surv_data)
+  dplyr::rename(surv_data, URN = `URN---Unique Response Number`)
 }
 
 #' Pad SPSS .sav question codes

@@ -22,7 +22,6 @@ Imports:
     haven,
     magrittr,
     dplyr,
-    tidyr,
     stringr,
     assertthat,
     sjlabelled,

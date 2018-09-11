@@ -4,9 +4,9 @@
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ianhandel/bossier?branch=master&svg=true)](https://ci.appveyor.com/project/ianhandel/bossier)
 
 
-A package in development to import data from [Bristol] Online Surveys
+A lightweight package to import data from [Bristol] Online Surveys
 
-Relies heavily on the sjlabelled package
+Uses the sjlabelled package
 
 To test install with...
 

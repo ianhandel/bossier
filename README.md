@@ -8,7 +8,7 @@ A lightweight package to import data from [Bristol] Online Surveys
 
 Uses the sjlabelled package
 
-Currently just provides the read_bos() function which imports a .sav file saved from Online Surveys (formelry BOS).
+Currently just provides the read_bos() function which imports a .sav file saved from Online Surveys (formerly BOS).
 
 To test install with...
 

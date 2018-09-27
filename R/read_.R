@@ -56,8 +56,8 @@ read_bos <- function(filename,
 
   surv_data <- purrr::map(surv_data, sjlabelled::as_label)
   surv_data <- tibble::as_tibble(surv_data)
-  surv_data <- purrr::set_names(surv_data, headers)
-  sjlabelled::remove_all_labels(surv_data)
+  surv_data <- sjlabelled::remove_all_labels(surv_data)
+  purrr::set_names(surv_data, headers)
 }
 
 #' Pad SPSS .sav question codes
